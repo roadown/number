@@ -54,13 +54,10 @@ public class MainActivity extends Activity {
 					"218.22.27.208", 5222);
 			// config.setReconnectionAllowed(true);
 			// config.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
-		
 			config.setSASLAuthenticationEnabled(false);
 			// config.setTruststorePath("/system/etc/security/cacerts.bks");
 			// config.setTruststorePassword("changeit");
 			// config.setTruststoreType("bks");
-
-		
 			// config.setDebuggerEnabled(false);
 		
 			try {
@@ -68,7 +65,6 @@ public class MainActivity extends Activity {
 		
 				connection.connect();
 				connection.login("alan", "123456");
-				
 				//XMPPConnection cc = ConnUtil.getConnection();
 				ChatManager cm = connection.getChatManager();
 				Chat chat=cm.createChat("lyj"+"@"+connection.getServiceName(), null);   
