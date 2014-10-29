@@ -7,20 +7,17 @@ import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
-
+import org.jivesoftware.smack.packet.Message;
 //import com.example.utils.XmppConnection;
 
-
-import org.jivesoftware.smack.packet.Message;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
+//程序入口登陆页面
 public class MainActivity extends Activity {
 
 	@Override
