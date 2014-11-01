@@ -8,9 +8,11 @@ import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
 import org.jivesoftware.smack.packet.Message;
-//import com.example.utils.XmppConnection;
+
+import com.example.connect.*;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -19,36 +21,50 @@ import android.widget.Toast;
 
 //程序入口登陆页面
 public class MainActivity extends Activity {
-
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Button mButton = (Button) findViewById(R.id.login);
-		//AsyncTask
+		// 登陆
+		Button mButton = (Button) findViewById(R.id.btn_login);
 		mButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				GetCSDNLogoTask task = new GetCSDNLogoTask();
-				task.execute();
+				 // AsyncTask,如果登陆成功，就跳转到好友列表窗口
+				 GetDataTask task = new GetDataTask();
+				 task.execute();
 			}
 		});
-		
-		// Button register = (Button) findViewById(R.id.registerAccount);
-		// register.setOnClickListener(new android.view.View.OnClickListener() {
-		// public void onClick(View v) {
-		// Intent intent = new Intent(MainActivity.this,
-		// RegisterActivity.class);
-		// MainActivity.this.startActivity(intent);
-		// }
-		// });
+
+		// 注册
+		Button register = (Button) findViewById(R.id.btn_register);
+		register.setOnClickListener(new android.view.View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this,
+						RegisterActivity.class);
+				MainActivity.this.startActivity(intent);
+			}
+		});
+
+		// 设置
+		Button set = (Button) findViewById(R.id.btn_settings);
+		set.setOnClickListener(new android.view.View.OnClickListener() {
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this,
+						SettingsActivity.class);
+				MainActivity.this.startActivity(intent);
+			}
+		});
 	}
 
-	class GetCSDNLogoTask extends AsyncTask<String, Integer, Boolean> {
+	class GetDataTask extends AsyncTask<String, Integer, Boolean> {
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+		
 		@Override
 		protected Boolean doInBackground(String... arg0) {
 			ConnectionConfiguration config = new ConnectionConfiguration(
-					"218.22.27.208", 5222);
+					"218.22.27.208", 5222, "");
 			// config.setReconnectionAllowed(true);
 			// config.setSecurityMode(ConnectionConfiguration.SecurityMode.enabled);
 			config.setSASLAuthenticationEnabled(false);
@@ -56,18 +72,19 @@ public class MainActivity extends Activity {
 			// config.setTruststorePassword("changeit");
 			// config.setTruststoreType("bks");
 			// config.setDebuggerEnabled(false);
-		
+
 			try {
 				XMPPConnection connection = new XMPPConnection(config);
-		
+
 				connection.connect();
 				connection.login("alan", "123456");
-				//XMPPConnection cc = ConnUtil.getConnection();
-				ChatManager cm = connection.getChatManager();
-				Chat chat=cm.createChat("lyj"+"@"+connection.getServiceName(), null);   
-				Message m=new Message();
-				m.setBody("第一条消息!");
-				chat.sendMessage(m);
+
+				// ChatManager cm = connection.getChatManager();
+				// Chat chat = cm.createChat(
+				// "lyj" + "@" + connection.getServiceName(), null);
+				// Message m = new Message();
+				// m.setBody("hello!");
+				// chat.sendMessage(m);
 				return true;
 			} catch (XMPPException e) {
 				e.printStackTrace();
@@ -81,26 +98,21 @@ public class MainActivity extends Activity {
 
 		protected void onPostExecute(Boolean result) {
 			if (result) {
-				Toast.makeText(MainActivity.this, "发送成功",
-						Toast.LENGTH_LONG).show();
+				Intent intent = new Intent(MainActivity.this,
+						FriendsActivity.class);
+				MainActivity.this.startActivity(intent);
 			} else {
-				Toast.makeText(MainActivity.this, "发送失败",
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(MainActivity.this, "登陆失败", Toast.LENGTH_LONG)
+						.show();
 			}
 		}
 
 		protected void onProgressUpdate(Integer... progress) {
-
-		}
-
-		protected void onPreExecute() {
-
+			super.onProgressUpdate(progress);
 		}
 
 		protected void onCancelled() {
-
+			super.onCancelled();
 		}
 	}
-
-	
 }
