@@ -11,14 +11,14 @@
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/Button02"
+            android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="1" />
 
         <Button
-            android:id="@+id/Button01"
+            android:id="@+id/btn2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -31,14 +31,14 @@
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/btn1"
+            android:id="@+id/btn3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="3" />
 
         <Button
-            android:id="@+id/btn2"
+            android:id="@+id/btn4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -52,14 +52,14 @@
         android:layout_weight="1" >
 
         <Button
-            android:id="@+id/btn3"
+            android:id="@+id/btn5"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="5" />
 
         <Button
-            android:id="@+id/btn4"
+            android:id="@+id/btn6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"

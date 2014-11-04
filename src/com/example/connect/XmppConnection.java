@@ -85,7 +85,7 @@ import com.example.listener.TaxiConnectionListener;
  */
 public class XmppConnection {
 	private int SERVER_PORT = 5222;
-	private String SERVER_HOST = "192.168.0.133";
+	private String SERVER_HOST = "218.22.27.208";
 	private XMPPConnection connection = null;
 	private String SERVER_NAME = "";
 	private static XmppConnection xmppConnection = new XmppConnection();

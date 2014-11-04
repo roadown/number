@@ -21,15 +21,18 @@ public class TaxiChatManagerListener implements ChatManagerListener {
 	public void chatCreated(Chat chat, boolean arg1) {
 		chat.addMessageListener(new MessageListener() {
 			public void processMessage(Chat arg0, Message msg) {
-				//登录用户
-				StringUtils.parseName(XmppConnection.getInstance().getConnection().getUser());
-				//发送消息用户
+				// 登录用户
+				StringUtils.parseName(XmppConnection.getInstance()
+						.getConnection().getUser());
+				// 发送消息用户
 				msg.getFrom();
-				//消息内容
+				// 消息内容
 				String body = msg.getBody();
 				boolean left = body.substring(0, 1).equals("{");
-				boolean right = body.substring(body.length()-1, body.length()).equals("}");
-				if(left&&right){
+				boolean right = body
+						.substring(body.length() - 1, body.length())
+						.equals("}");
+				if (left && right) {
 					try {
 						JSONObject obj = new JSONObject(body);
 						String type = obj.getString("messageType");
@@ -38,10 +41,9 @@ public class TaxiChatManagerListener implements ChatManagerListener {
 					} catch (JSONException e) {
 						e.printStackTrace();
 					}
-					
+
 				}
 			}
 		});
 	}
 }
-
